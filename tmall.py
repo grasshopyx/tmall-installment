@@ -1,5 +1,7 @@
 from datetime import date
 import sys
+import time
+start = time.clock()
 
 def add_months(sourcedate, months):
     """A module to add months to a date
@@ -10,7 +12,7 @@ def add_months(sourcedate, months):
 
     """
     month = sourcedate.month - 1 + months
-    year = sourcedate.year + months / 12
+    year = sourcedate.year + month / 12
     month = month % 12 + 1 
     return date(year, month, sourcedate.day)
 
@@ -25,23 +27,23 @@ rateperday = 1.0821 / 10000
 today=date.today()
 
 if today.day < billingday :
-    billingmonth = ( today.month + 1 ) % 12
-    if today.month == 12 :
-        billingyear = today.year + 1
-    else :
-        billingyear = today.year
+    # billingmonth = ( today.month + 1 ) % 12
+    # if today.month == 12 :
+    #     billingyear = today.year + 1
+    # else :
+    #     billingyear = today.year
 
-    firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
-    # firstrepaymentdate = add_months( date(today.year, today.month, repaymentday), 1 )
+    # firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
+    firstrepaymentdate = add_months( date(today.year, today.month, repaymentday), 1 )
 else :
-    billingmonth = ( today.month +2 ) % 12
-    if today.month >= 11 :
-        billingyear = today.year + 1
-    else :
-        billingyear = today.year
+    # billingmonth = ( today.month +2 ) % 12
+    # if today.month >= 11 :
+    #     billingyear = today.year + 1
+    # else :
+    #     billingyear = today.year
 
-    firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
-    # firstrepaymentdate = add_months( date(today.year, today.month, repaymentday), 2)
+    # firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
+    firstrepaymentdate = add_months( date(today.year, today.month, repaymentday), 2)
 
 print firstrepaymentdate
 
@@ -67,3 +69,4 @@ discount = ( price - difference ) / price
 print "Your difference is %f" % difference
 print "Your discount is %f" % discount
 
+print time.clock() - start
