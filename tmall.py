@@ -26,26 +26,10 @@ rateperday = 1.0821 / 10000
 
 today=date.today()
 
-
 if today.day < billingday :
     mondiff = 1
-    # billingmonth = ( today.month + 1 ) % 12
-    # if today.month == 12 :
-    #     billingyear = today.year + 1
-    # else :
-    #     billingyear = today.year
-
-    # firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
 else :
     mondiff = 2
-    # billingmonth = ( today.month +2 ) % 12
-    # if today.month >= 11 :
-    #     billingyear = today.year + 1
-    # else :
-    #     billingyear = today.year
-
-    # firstrepaymentdate = date(billingyear, billingmonth, repaymentday)
-
 
 firstrepaymentdate = add_months( date(today.year, today.month, repaymentday), mondiff)
 
@@ -57,15 +41,6 @@ thirdrepaymentdate  = add_months(firstrepaymentdate,2)
 days1 = firstrepaymentdate - date.today()
 days2 = secondrepaymentdate -date.today()
 days3 = thirdrepaymentdate - date.today()
-
-# print firstrepaymentdate
-# print secondrepaymentdate
-# print thirdrepaymentdate
-
-# print "days1 = %d" % days1.days
-# print "days2 = %d" % days2.days
-# print "days3 = %d" % days3.days
-
 
 difference = price * ( ( 1 + rateperday ) ** days1.days + ( 1 + rateperday ) ** days2.days + ( 1 + rateperday ) ** days3.days ) - 3 * price
 discount = ( price - difference ) / price
