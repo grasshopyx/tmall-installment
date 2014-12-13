@@ -1,7 +1,16 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 from datetime import date
 import time
 import sys
+import argparse
+
 start = time.clock()
+
+parser = argparse.ArgumentParser()
+parser.add_argument("price", help="input the good's price you want to buy", type=float )
+args = parser.parse_args()
 
 def add_months(sourcedate, months):
     """A module to add months to a date
@@ -16,8 +25,7 @@ def add_months(sourcedate, months):
     month = month % 12 + 1 
     return date(year, month, sourcedate.day)
 
-price = float( sys.argv[1] )
-# print "Your price is %f" % price
+price = args.price;
 
 billingday   = 3
 repaymentday = 13
