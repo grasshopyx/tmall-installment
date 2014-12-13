@@ -42,7 +42,7 @@ days1 = firstrepaymentdate - date.today()
 days2 = secondrepaymentdate -date.today()
 days3 = thirdrepaymentdate - date.today()
 
-difference = price * ( ( 1 + rateperday ) ** days1.days + ( 1 + rateperday ) ** days2.days + ( 1 + rateperday ) ** days3.days ) - 3 * price
+difference = price * ( ( 1 + rateperday ) ** days1.days + 2.0/3.0 * ( 1 + rateperday ) ** days2.days + 1.0/3.0 * ( 1 + rateperday ) ** days3.days ) - 2 * price
 discount = ( price - difference ) / price
 
 print "Your difference is %f" % difference
